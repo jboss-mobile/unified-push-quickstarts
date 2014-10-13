@@ -91,7 +91,7 @@ REST API.
 
 To switch between backends update ```CONTACTS.app.serverUrl``` in ```src/main/webapp/js/app.js```:
 
-        CONTACTS.app.serverUrl = "http://localhost:9080/jboss-contacts-mobile-picketlink-secured";
+        CONTACTS.app.serverUrl = "http://localhost:8080/jboss-contacts-mobile-picketlink-secured";
         or
         CONTACTS.app.serverUrl = "http://localhost:8080/jboss-contacts-mobile-proxy";
 
