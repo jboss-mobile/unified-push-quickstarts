@@ -20,15 +20,9 @@ import Foundation
 class EmailValidationStrategy: NSObject, ValidationStrategy {
 
     func validate(input: String) -> Bool {
-        let detector = NSDataDetector(types: NSTextCheckingType.Link.toRaw(), error: nil)
-        let matches = detector.matchesInString(input, options:.ReportCompletion, range:NSMakeRange(0, input.utf16Count));
-
-        for match in matches as [NSTextCheckingResult] {
-            if match.resultType.toRaw() ==  NSTextCheckingType.Link.toRaw() && match.URL?.absoluteString!.rangeOfString("mailto:") != nil {
-                return true;
-            }
-        }
-    
-        return false;
+        let regex = "^(?!.*\\.{2})[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+        let predicate = NSPredicate(format:"SELF MATCHES %@",  regex)!
+        
+        return predicate.evaluateWithObject(input)
     }
 }

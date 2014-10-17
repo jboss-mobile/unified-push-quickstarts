@@ -61,7 +61,7 @@ class LoginViewController: UITableViewController {
 
                 // initialize "Registration helper" object using the
                 // base URL where the "AeroGear Unified Push Server" is running.
-                let registration = AGDeviceRegistration(serverURL: NSURL(string: self.pushServerURL))
+                let registration = AGDeviceRegistration(serverURL: NSURL(string: self.pushServerURL)!)
                 
                 // perform registration of this device
                 registration.registerWithClientInfo({ (clientInfo: AGClientDeviceInformation!) in

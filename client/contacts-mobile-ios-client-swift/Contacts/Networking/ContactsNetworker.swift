@@ -25,7 +25,7 @@ class ContactsNetworker: RestNetworker {
     class var shared: ContactsNetworker {
         struct Static {
             static var kAPIBaseURLString = NSBundle.mainBundle().objectForInfoDictionaryKey("BackendURL")! as String
-            static let _instance = ContactsNetworker(serverURL: NSURL(string: kAPIBaseURLString).URLByAppendingPathComponent("/rest"))
+            static let _instance = ContactsNetworker(serverURL: NSURL(string: kAPIBaseURLString)!.URLByAppendingPathComponent("/rest"))
             }
             
             return Static._instance
@@ -41,7 +41,7 @@ class ContactsNetworker: RestNetworker {
     
         // apply HTTP Basic
         let basicAuthCredentials: NSData! = "\(username):\(password)".dataUsingEncoding(NSUTF8StringEncoding)
-        let base64Encoded = basicAuthCredentials.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.fromRaw(0)!)
+        let base64Encoded = basicAuthCredentials.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(0))
         
         request.setValue("Basic \(base64Encoded)", forHTTPHeaderField: "Authorization")
         

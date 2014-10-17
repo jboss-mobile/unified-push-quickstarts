@@ -20,8 +20,8 @@ import Foundation
 class PhoneValidationStrategy: NSObject, ValidationStrategy {
     
     func validate(input: String) -> Bool {
-        let detector = NSDataDetector(types: NSTextCheckingType.PhoneNumber.toRaw(), error: nil)
-        let matches = detector.matchesInString(input, options:.ReportCompletion, range:NSMakeRange(0, input.utf16Count));
+        let detector = NSDataDetector(types: NSTextCheckingType.PhoneNumber.rawValue, error: nil)
+        let matches = detector!.matchesInString(input, options:.ReportCompletion, range:NSMakeRange(0, input.utf16Count));
 
         return matches.count > 0
     }
