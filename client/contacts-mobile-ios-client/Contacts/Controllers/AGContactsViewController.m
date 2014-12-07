@@ -116,6 +116,15 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
+    // access  the header view
+    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
+    // adjust color of background and text to match theme
+    header.contentView.backgroundColor = [UIColor colorWithRed:0.973 green:0.973 blue:0.973 alpha:1]; /*#f8f8f8*/
+    header.textLabel.textColor = [UIColor blackColor];
+    header.textLabel.font = [UIFont boldSystemFontOfSize:16];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         return [self.filteredContacts count];
