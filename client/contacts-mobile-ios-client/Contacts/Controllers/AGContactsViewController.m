@@ -41,6 +41,8 @@
     [refresh addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refresh;
 
+    // display nav. bar
+    self.navigationController.navigationBarHidden = NO;
     // hide the back button, logout button is used instead
     self.navigationItem.hidesBackButton = YES;
     

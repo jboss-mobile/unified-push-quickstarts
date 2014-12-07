@@ -25,12 +25,8 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameTxtField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTxtField;
-@property (nonatomic) IBOutlet UIBarButtonItem *loginButtonBarItem;
-
-@property (nonatomic) UIBarButtonItem *activityIndicatorBarItem;
-@property (nonatomic) UIActivityIndicatorView *activityIndicator;
-
-- (IBAction)login:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
 
@@ -38,12 +34,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // setup progress view
-    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    
-    self.activityIndicatorBarItem = [[UIBarButtonItem alloc] initWithCustomView:self.activityIndicator];
+}
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    // hide the nav. bar
+    self.navigationController.navigationBarHidden = YES;
 }
 
 #pragma mark - Action methods
@@ -137,22 +134,22 @@
             [self stopProgressAnimation];
         }
     }];
+             
 }
 
 #pragma mark - Utility methods to display progress view
 
 - (void)startProgressAnimation {
-    // assign the progress view to the navigator controller
-    self.navigationItem.rightBarButtonItem = self.activityIndicatorBarItem;
-    
-    [self.activityIndicator startAnimating];
+    // hide displayed keyboard
+    [self.view.window endEditing:YES];
+    // toggle progress indicator
+    self.loginButton.hidden = YES;
+    self.activityIndicator.hidden = NO;
 }
 
 - (void)stopProgressAnimation {
-    [self.activityIndicator stopAnimating];
-
-    // replace with login button upon stop
-    self.navigationItem.rightBarButtonItem = self.loginButtonBarItem;
+    self.loginButton.hidden = NO;
+    self.activityIndicator.hidden = YES;
 }
 
 @end
