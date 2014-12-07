@@ -101,6 +101,21 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    UIView *bgView;
+    
+    // determine current state
+    if ([self.contacts count] == 0) { // registered but no notification received yet
+        UIViewController *empty = [self.navigationController.storyboard instantiateViewControllerWithIdentifier:@"EmptyViewController"];
+        bgView = empty.view;
+    }
+    
+    // set the background view if needed
+    if (bgView != NULL) {
+        self.tableView.backgroundView = bgView;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        return 0;
+    }
+    
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         return 1;
     } else {
@@ -149,6 +164,12 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    // if it's the first message in the stream, let's clear the 'empty' placeholder vier
+    if (self.tableView.backgroundView != NULL) {
+        self.tableView.backgroundView = NULL;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    }
+    
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell"];
 
     AGContact *contact;

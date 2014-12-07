@@ -398,9 +398,66 @@
             </objects>
             <point key="canvasLocation" x="1497" y="-525"/>
         </scene>
+        <!--Empty Controller-->
+        <scene sceneID="LF0-d3-He1">
+            <objects>
+                <viewController storyboardIdentifier="EmptyViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tQM-0z-lwE" userLabel="Empty Controller" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LOs-mH-cb0"/>
+                        <viewControllerLayoutGuide type="bottom" id="Lzm-QV-YGW"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Jnl-T1-Pyw">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8du-Np-zRf">
+                                <rect key="frame" x="34" y="184" width="252" height="136"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="blank-screen" translatesAutoresizingMaskIntoConstraints="NO" id="wH8-oI-aKz">
+                                        <rect key="frame" x="101" y="8" width="50" height="50"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KqR-Ws-Y6a">
+                                        <rect key="frame" x="60" y="66" width="133" height="21"/>
+                                        <string key="text">Nothing here yet
+</string>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Click the plus button to add a contact." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="erY-Pv-aEI">
+                                        <rect key="frame" x="0.0" y="95" width="271" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="252" id="Q0X-xS-DOL"/>
+                                    <constraint firstAttribute="height" constant="136" id="ejK-XR-xfc"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="8du-Np-zRf" secondAttribute="centerX" id="pPd-zW-JOP"/>
+                            <constraint firstAttribute="centerY" secondItem="8du-Np-zRf" secondAttribute="centerY" id="zAt-No-I11"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="fhx-Yf-toP"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MNB-6n-q5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="964" y="125"/>
+        </scene>
     </scenes>
     <resources>
         <image name="add" width="24" height="24"/>
+        <image name="blank-screen" width="48" height="48"/>
         <image name="line" width="294" height="37"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
