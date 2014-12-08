@@ -32,6 +32,7 @@
 		6F7B07C218FE8B2000F7A686 /* AGContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7B07BF18FE8B2000F7A686 /* AGContactsViewController.m */; };
 		6F7B07C318FE8B2000F7A686 /* AGLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7B07C118FE8B2000F7A686 /* AGLoginViewController.m */; };
 		6FAFD3211910E17A0012DEAA /* AGUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FAFD3201910E17A0012DEAA /* AGUser.m */; };
+		6FD229671A350E3800CFAE49 /* AGContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD229661A350E3800CFAE49 /* AGContactViewController.m */; };
 		6FFCF92818FFCF830002A9C4 /* AGRestNetworker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FFCF92718FFCF830002A9C4 /* AGRestNetworker.m */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +88,8 @@
 		6F7B07C118FE8B2000F7A686 /* AGLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGLoginViewController.m; path = Controllers/AGLoginViewController.m; sourceTree = "<group>"; };
 		6FAFD31F1910E17A0012DEAA /* AGUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGUser.h; path = Model/AGUser.h; sourceTree = "<group>"; };
 		6FAFD3201910E17A0012DEAA /* AGUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGUser.m; path = Model/AGUser.m; sourceTree = "<group>"; };
+		6FD229651A350E3800CFAE49 /* AGContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGContactViewController.h; path = Controllers/AGContactViewController.h; sourceTree = "<group>"; };
+		6FD229661A350E3800CFAE49 /* AGContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGContactViewController.m; path = Controllers/AGContactViewController.m; sourceTree = "<group>"; };
 		6FFCF92618FFCF830002A9C4 /* AGRestNetworker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGRestNetworker.h; path = Networking/AGRestNetworker.h; sourceTree = "<group>"; };
 		6FFCF92718FFCF830002A9C4 /* AGRestNetworker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGRestNetworker.m; path = Networking/AGRestNetworker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -227,6 +230,8 @@
 				6F7B07BF18FE8B2000F7A686 /* AGContactsViewController.m */,
 				6F341586190105A100718353 /* AGContactDetailsViewController.h */,
 				6F341587190105A100718353 /* AGContactDetailsViewController.m */,
+				6FD229651A350E3800CFAE49 /* AGContactViewController.h */,
+				6FD229661A350E3800CFAE49 /* AGContactViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -363,6 +368,7 @@
 				6F600DFE19000BEF009BD17E /* AGContactsNetworker.m in Sources */,
 				6FAFD3211910E17A0012DEAA /* AGUser.m in Sources */,
 				6F7B07C318FE8B2000F7A686 /* AGLoginViewController.m in Sources */,
+				6FD229671A350E3800CFAE49 /* AGContactViewController.m in Sources */,
 				6FFCF92818FFCF830002A9C4 /* AGRestNetworker.m in Sources */,
 				6F341588190105A100718353 /* AGContactDetailsViewController.m in Sources */,
 				6F6C4710190A759D00991DB8 /* AGPhoneValidationStrategy.m in Sources */,
