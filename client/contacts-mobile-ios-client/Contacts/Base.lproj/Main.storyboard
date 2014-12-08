@@ -355,7 +355,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xkq-IB-qNW" id="v9P-V9-sa2">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="maria" placeholder="Username" minimumFontSize="17" background="line" translatesAutoresizingMaskIntoConstraints="NO" id="SxE-10-u7d">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" minimumFontSize="17" background="line" translatesAutoresizingMaskIntoConstraints="NO" id="SxE-10-u7d">
                                                     <rect key="frame" x="49" y="0.0" width="250" height="30"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -378,7 +378,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hox-hz-C46" id="XLG-z0-NJC">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="maria" placeholder="Password" minimumFontSize="17" background="line" translatesAutoresizingMaskIntoConstraints="NO" id="GOU-Z8-i2P">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" background="line" translatesAutoresizingMaskIntoConstraints="NO" id="GOU-Z8-i2P">
                                                     <rect key="frame" x="47" y="0.0" width="250" height="30"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -652,6 +652,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="YIP-0h-CU6"/>
+        <segue reference="8oo-L6-Sck"/>
     </inferredMetricsTieBreakers>
 </document>

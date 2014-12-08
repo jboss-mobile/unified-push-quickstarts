@@ -116,7 +116,10 @@
     UIView *bgView;
     
     // determine current state
-    if ([self.contacts count] == 0) { // registered but no notification received yet
+    if ([self.contacts count] == 0) { // empty ?
+        // hide search bar
+        self.searchDisplayController.searchBar.hidden = YES;
+        // apply the "empty" view
         UIViewController *empty = [self.navigationController.storyboard instantiateViewControllerWithIdentifier:@"EmptyViewController"];
         bgView = empty.view;
     }
@@ -178,6 +181,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // if it's the first message in the stream, let's clear the 'empty' placeholder vier
     if (self.tableView.backgroundView != NULL) {
+        // display search bar
+        self.searchDisplayController.searchBar.hidden = NO;
+        // remove empty view
         self.tableView.backgroundView = NULL;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     }
