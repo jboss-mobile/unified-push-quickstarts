@@ -17,6 +17,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AGLoginViewController : UIViewController
+@interface AGLoginViewController : UITableViewController
 
 @end

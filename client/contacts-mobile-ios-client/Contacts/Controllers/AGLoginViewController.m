@@ -67,7 +67,7 @@
     // attempt to login to backend
     [[AGContactsNetworker shared] loginWithUsername:username password:password
                                   completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-
+                                      
         if (!error) { // success
             
             // time to register user with the "AeroGear UnifiedPush Server"
@@ -75,7 +75,7 @@
             // initialize "Registration helper" object using the
             // base URL where the "AeroGear Unified Push Server" is running.
             AGDeviceRegistration *registration = [[AGDeviceRegistration alloc]
-                                                  initWithServerURL:[NSURL URLWithString:@"<# URL of the running AeroGear UnifiedPush Server #>"]];
+                                                  initWithServerURL:[NSURL URLWithString:@"http://192.168.1.3:8080/ag-push/"]];
             
             // perform registration of this device
             [registration registerWithClientInfo:^(id<AGClientDeviceInformation> clientInfo) {
@@ -90,8 +90,8 @@
                 // both received when performing the variant registration with the server.
                 // See section "Register an iOS Variant" in the guide:
                 // http://aerogear.org/docs/guides/aerogear-push-ios/unified-push-server/
-                [clientInfo setVariantID:@"<# Variant Id #>"];
-                [clientInfo setVariantSecret:@"<# Variant Secret #>"];
+                [clientInfo setVariantID:@"5a193005-b8c5-4f2d-959d-056d527be363"];
+                [clientInfo setVariantSecret:@"0a3d00e8-33d8-40d3-9ea2-2cde56d7a5c3"];
                 
                 // --optional config--
                 // set some 'useful' hardware information params
@@ -122,7 +122,8 @@
                 
                 [self stopProgressAnimation];
             }];
-            
+ 
+
         } else {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops!"
                                                             message:[error localizedDescription]
@@ -134,7 +135,6 @@
             [self stopProgressAnimation];
         }
     }];
-             
 }
 
 #pragma mark - Utility methods to display progress view
