@@ -25,13 +25,6 @@
     [self setup];
 }
 
-- (id)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-    }
-    return self;
-}
-
 - (void)setup {
     // subscribe to get notif for textfield events
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -42,25 +35,15 @@
 
 - (BOOL)validate {
     BOOL isValid =(self.validationStrategy? [self.validationStrategy validate:self.text]: YES);
+    self.background = isValid ? [UIImage imageNamed:@"line_green"]: [UIImage imageNamed:@"line_red"];
     
-    self.layer.borderWidth = 1.0;
-    
-    if (!isValid) {
-        self.layer.borderColor = [UIColor colorWithHue:0 saturation:1 brightness:1 alpha:1].CGColor;
-    } else {
-        self.layer.borderColor = [UIColor colorWithHue:0.333 saturation:1 brightness:0.75 alpha:1].CGColor;
-    }
-
     return isValid;
 }
 
 #pragma mark - UITextField notification handling
 
 - (void)textFieldDidEndEditing:(NSNotification *)notification {
-    //UITextField *textField = (UITextField*)[notification object];
-    
     [self resignFirstResponder];
-    
     [self validate];
 }
 

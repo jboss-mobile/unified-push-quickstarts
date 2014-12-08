@@ -16,6 +16,7 @@
  */
 
 #import "AGContactsViewController.h"
+#import "AGContactViewController.h"
 #import "AGContactsNetworker.h"
 #import "AGContact.h"
 
@@ -48,6 +49,17 @@
     
      // load initial data
     [self refresh];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    // ask table to refresh
+    if (self.searchDisplayController.active) {
+        [self.searchDisplayController.searchResultsTableView reloadData];
+    } else {
+        [self.tableView reloadData];
+    }
 }
 
 #pragma mark - Remote Notification handler methods
@@ -94,7 +106,7 @@
     
     if (contact) { // if found
         // display details screen
-        [self performSegueWithIdentifier:@"EditContactSegue" sender:contact];
+        [self performSegueWithIdentifier:@"ViewContactSegue" sender:contact];
     }
 }
 
@@ -188,7 +200,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:@"EditContactSegue" sender:[tableView cellForRowAtIndexPath:indexPath]];
+    [self performSegueWithIdentifier:@"ViewContactSegue" sender:[tableView cellForRowAtIndexPath:indexPath]];
 }
 
 #pragma mark - Table delete
@@ -278,7 +290,6 @@
 }
 
 - (void)contactDetailsViewController:(AGContactDetailsViewController *)controller didSave:(AGContact *)contact {
-    // since completionhandler logic is common, define upfront
     id completionHandler = ^(NSURLResponse *response, id responseObject, NSError *error) {
 
         if (error) { // if an error occured
@@ -297,11 +308,8 @@
             [self dismissViewControllerAnimated:YES completion:nil];
             
             // add to our local modal
-            if (!contact.recId) {
-                contact.recId = responseObject[@"id"];
-                
-                [self addContact:contact];
-            }
+            contact.recId = responseObject[@"id"];
+            [self addContact:contact];
             
             // ask table to refresh
             if (self.searchDisplayController.active) {
@@ -311,14 +319,9 @@
             }
         }
     };
-
-    if (contact.recId) { // update existing
-        [[AGContactsNetworker shared] PUT:[NSString stringWithFormat:@"/contacts/%@", contact.recId] // append contact id
-                               parameters:[contact asDictionary] completionHandler:completionHandler];
-        
-    } else { // create new
-        [[AGContactsNetworker shared] POST:@"/contacts" parameters:[contact asDictionary] completionHandler:completionHandler];
-    }
+    
+    // create new
+    [[AGContactsNetworker shared] POST:@"/contacts" parameters:[contact asDictionary] completionHandler:completionHandler];
 }
 
 # pragma mark - Actions
@@ -423,15 +426,13 @@
 #pragma mark - Seque methods
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"AddContactSegue"] || [segue.identifier isEqualToString:@"EditContactSegue"]) {
-        // for both "Add" and "Edit" mode, attach delegate to self
-        UINavigationController *navigationController = segue.destinationViewController;
-        AGContactDetailsViewController *contactDetailsViewController = [navigationController viewControllers][0];
+    if ([segue.identifier isEqualToString:@"AddContactSegue"]) {
+        AGContactDetailsViewController *contactDetailsViewController = [segue.destinationViewController viewControllers][0];
         contactDetailsViewController.delegate = self;
-        
-        // for "Edit", pass the Contact to the controller
-        if ([segue.identifier isEqualToString:@"EditContactSegue"]) {
-            
+
+    } else if ([segue.identifier isEqualToString:@"ViewContactSegue"]) {
+            AGContactViewController *contactViewController = segue.destinationViewController;
+
             // determine the 'sender'
             AGContact *contact;
 
@@ -442,9 +443,8 @@
                 contact = (AGContact *)sender;
             
             // assign it
-            contactDetailsViewController.contact = contact;
+            contactViewController.contact = contact;
         }
-    }
 }
 
 #pragma mark - utility method

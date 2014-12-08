@@ -26,11 +26,11 @@
 @property (weak, nonatomic) IBOutlet AGValidationTextfield *phoneTxtField;
 @property (weak, nonatomic) IBOutlet AGValidationTextfield *emailTxtField;
 @property (weak, nonatomic) IBOutlet AGValidationTextfield *birthdateTxtField;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (strong, nonatomic) NSArray *textfields;
 
-- (IBAction)cancel:(id)sender;
-- (IBAction)save:(id)sender;
+@property (strong, nonatomic) UITextField *activeTxtField;
 
 @end
 
@@ -39,6 +39,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self registerForKeyboardNotifications];
+
     // setup a UIDatePicker when clicked on the date field
     UIDatePicker *datePicker = [[UIDatePicker alloc]init];
     datePicker.datePickerMode = UIDatePickerModeDate;
@@ -122,6 +124,53 @@
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     
     return [dateFormatter stringFromDate:date];
+}
+
+#pragma mark - Keyboard utility methods
+
+- (void)registerForKeyboardNotifications {
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]
+                                             initWithTarget:self action:@selector(tap:)];
+    [self.view addGestureRecognizer:tapRecognizer];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    self.activeTxtField = textField;
+}
+
+- (void)keyboardWasShown:(NSNotification*)aNotification {
+    NSDictionary* info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+    self.scrollView.contentInset = contentInsets;
+    self.scrollView.scrollIndicatorInsets = contentInsets;
+    
+    // If active text field is hidden by keyboard, scroll it so it's visible
+    CGRect aRect = self.view.frame;
+    aRect.size.height -= kbSize.height;
+    if (!CGRectContainsPoint(aRect, self.activeTxtField.frame.origin) ) {
+        [self.scrollView scrollRectToVisible:self.activeTxtField.frame animated:YES];
+    }
+}
+
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification {
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    self.scrollView.contentInset = contentInsets;
+    self.scrollView.scrollIndicatorInsets = contentInsets;
+}
+
+- (void)tap:(UIGestureRecognizer *)gesture {
+    [self.view endEditing:YES];
 }
 
 @end

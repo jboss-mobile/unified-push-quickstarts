@@ -16,18 +16,10 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "AGContactDetailsViewController.h"
 
-@class AGContactDetailsViewController;
-@class AGContact;
+@interface AGContactViewController : UITableViewController <AGContactDetailsViewControllerDelegate>
 
-@protocol AGContactDetailsViewControllerDelegate <NSObject>
-- (void)contactDetailsViewControllerDidCancel:(AGContactDetailsViewController *)controller;
-- (void)contactDetailsViewController:(AGContactDetailsViewController *)controller didSave:(AGContact *)contact;
-@end
-
-@interface AGContactDetailsViewController : UIViewController <UITextFieldDelegate>
-
-@property (readwrite, nonatomic, weak) id <AGContactDetailsViewControllerDelegate> delegate;
 @property (readwrite, nonatomic, strong) AGContact *contact;
 
 @end
