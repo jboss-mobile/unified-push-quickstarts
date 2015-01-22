@@ -39,7 +39,7 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
         self.navigationItem.hidesBackButton = true;
         
         // setup search bar
-        let searchResultsController = UITableViewController(style: .Plain)!
+        let searchResultsController = UITableViewController(style: .Plain)
         searchResultsController.tableView.dataSource = self
         searchResultsController.tableView.delegate = self
         
