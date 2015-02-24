@@ -40,7 +40,7 @@ public class ContactCreationPushNotifier {
 
     public ContactCreationPushNotifier() {
         this.configuration = new QuickStartConfiguration().read();
-        javaSender = new  DefaultPushSender.Builder(this.configuration.getServerUrl())
+        javaSender = DefaultPushSender.withRootServerURL(this.configuration.getServerUrl())
                 .pushApplicationId(this.configuration.getPushApplicationId())
                 .masterSecret(this.configuration.getMasterSecret())
                 .build();
