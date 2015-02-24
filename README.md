@@ -1,9 +1,9 @@
-[![Build Status](https://api.travis-ci.org/aerogear/aerogear-push-quickstarts.png?branch=master)](https://travis-ci.org/aerogear/aerogear-push-quickstarts)
+[![Build Status](https://api.travis-ci.org/jboss-mobile/unified-push-quickstarts.png?branch=master)](https://travis-ci.org/jboss-mobile/unified-push-quickstarts)
 
-aerogear-push-quickstarts
-=========================
+unified-push-quickstarts
+========================
 
-UnifiedPush Quickstart Examples
+Unified Push Quickstart Examples
 
 
 * server
