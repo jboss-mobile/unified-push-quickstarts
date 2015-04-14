@@ -25,9 +25,9 @@ class LoginViewController: UITableViewController {
     
     var activityIndicatorBarItem: UIBarButtonItem!
     var activityIndicator: UIActivityIndicatorView!
-    let pushServerURL = NSBundle.mainBundle().objectForInfoDictionaryKey("UnifiedPushServerURL")! as String
-    let variantID = NSBundle.mainBundle().objectForInfoDictionaryKey("VariantID")! as String
-    let variantSecret = NSBundle.mainBundle().objectForInfoDictionaryKey("VariantSecret")! as String
+    let pushServerURL = NSBundle.mainBundle().objectForInfoDictionaryKey("UnifiedPushServerURL")! as! String
+    let variantID = NSBundle.mainBundle().objectForInfoDictionaryKey("VariantID")! as! String
+    let variantSecret = NSBundle.mainBundle().objectForInfoDictionaryKey("VariantSecret")! as! String
 
     override func viewDidLoad() {
         super.viewDidLoad()

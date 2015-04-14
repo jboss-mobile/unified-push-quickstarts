@@ -24,7 +24,7 @@ class ContactsNetworker: RestNetworker {
     // holds the singleton ContactsNetworker
     class var shared: ContactsNetworker {
         struct Static {
-            static var kAPIBaseURLString = NSBundle.mainBundle().objectForInfoDictionaryKey("BackendURL")! as String
+            static var kAPIBaseURLString = NSBundle.mainBundle().objectForInfoDictionaryKey("BackendURL")! as! String
             static let _instance = ContactsNetworker(serverURL: NSURL(string: kAPIBaseURLString)!.URLByAppendingPathComponent("/rest"))
             }
             

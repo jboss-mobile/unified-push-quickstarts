@@ -25,17 +25,14 @@ class RestNetworker: NSObject, NSURLSessionDelegate {
         static let NetworkOperationFailingURLResponseErrorKey = "AGNetworkingOperationFailingURLResponseErrorKey"
     }
     
-    let serverURL: NSURL
-    let session: NSURLSession!
-    
-    init(serverURL: NSURL) {
-        self.serverURL = serverURL;
+    var serverURL: NSURL
+    var session: NSURLSession!
 
+    init(serverURL: NSURL) {
+        self.serverURL = serverURL
         super.init()
-        
         let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
         sessionConfig.HTTPAdditionalHeaders = ["Content-Type": "application/json", "Accept": "application/json"]
-        
         self.session = NSURLSession(configuration: sessionConfig, delegate: self, delegateQueue: NSOperationQueue.mainQueue())
     }
     
@@ -43,7 +40,7 @@ class RestNetworker: NSObject, NSURLSessionDelegate {
         
         let request = newRequest(resource, method: "GET", payload: parameters)
         
-        let task = dataTaskWithRequest(request, completionHandler);
+        let task = dataTaskWithRequest(request, completionHandler: completionHandler);
         task.resume()
         
         return task
@@ -52,7 +49,7 @@ class RestNetworker: NSObject, NSURLSessionDelegate {
     func POST(resource: String, parameters: AnyObject?, completionHandler: ((NSURLResponse!, AnyObject!, NSError!) -> Void)!) -> NSURLSessionDataTask {
         let request = newRequest(resource, method: "POST", payload: parameters)
         
-        let task = dataTaskWithRequest(request, completionHandler);
+        let task = dataTaskWithRequest(request, completionHandler: completionHandler);
         task.resume()
         
         return task
@@ -63,7 +60,7 @@ class RestNetworker: NSObject, NSURLSessionDelegate {
         let request = newRequest(resource, method: "PUT", payload: parameters)
         let str = NSString(data: request.HTTPBody!, encoding: NSUTF8StringEncoding)
         
-        let task = dataTaskWithRequest(request, completionHandler);
+        let task = dataTaskWithRequest(request, completionHandler: completionHandler);
         task.resume()
         
         return task
@@ -72,7 +69,7 @@ class RestNetworker: NSObject, NSURLSessionDelegate {
     func DELETE(resource: String, parameters: AnyObject?, completionHandler: ((NSURLResponse!, AnyObject!, NSError!) -> Void)!) -> NSURLSessionDataTask {
         
         let request = newRequest(resource, method: "DELETE", payload: parameters)
-        let task = dataTaskWithRequest(request, completionHandler);
+        let task = dataTaskWithRequest(request, completionHandler: completionHandler);
         task.resume()
         
         return task
@@ -83,7 +80,7 @@ class RestNetworker: NSObject, NSURLSessionDelegate {
             
             let task = session.dataTaskWithRequest(request) {(data, response, error) in
                 if error == nil {
-                    let httpResp = response as NSHTTPURLResponse
+                    let httpResp = response as! NSHTTPURLResponse
                     
                     var result: AnyObject?
                     
