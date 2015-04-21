@@ -60,7 +60,7 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
     
     func performFetchWithUserInfo(userInfo: [NSObject : AnyObject],  completionHandler: ((UIBackgroundFetchResult) -> Void)!) {
         // extract the id from the notification
-        let recId = userInfo["id"] as NSString
+        let recId = userInfo["id"] as! NSString
         
         // Note: in case the user created the contact locally, a notification will still be received by the server
         //       Since we have already added, no need to fetch it again so simple return
@@ -76,7 +76,7 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
                 
             } else { // success
                 // add to model
-                self.addContact(Contact(fromDictionary: result as [String: AnyObject]))
+                self.addContact(Contact(fromDictionary: result as! [String: AnyObject]))
                 
                 // refresh tableview
                 self.tableView.reloadData()
@@ -142,7 +142,7 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell") as! UITableViewCell
 
         let sectionTitle = contactsSectionTitles[indexPath.section]
 
@@ -249,7 +249,7 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
                     
                 // add to our local modal
                 if contact.recId == nil {
-                    contact.recId = (result as [String: AnyObject])["id"] as? NSNumber;
+                    contact.recId = (result as! [String: AnyObject])["id"] as? NSNumber;
                     self.addContact(contact)
                 }
                 
@@ -281,7 +281,7 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
                 self.contacts.removeAll(keepCapacity: false)
                 self.contactsSectionTitles.removeAll(keepCapacity: false)
                 
-                for contact in result as [[String: AnyObject]] {
+                for contact in result as! [[String: AnyObject]] {
                     self.addContact(Contact(fromDictionary: contact))
                 }
                 
@@ -316,13 +316,13 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
         }
         
         // ask search results table to refresh
-        let tableviewController = searchController.searchResultsController as UITableViewController
+        let tableviewController = searchController.searchResultsController as! UITableViewController
         tableviewController.tableView.reloadData()
     }
     
     // MARK: - UISearchBarDelegate delegate methods
     
-    func searchBarCancelButtonClicked(searchBar: UISearchBar!) {
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         self.searchController.active = false
         self.tableView.reloadData()
     }
@@ -333,8 +333,8 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
         if segue.identifier == "AddContactSegue" || segue.identifier == "EditContactSegue" {
             
             // for both "Add" and "Edit" mode, attach delegate to self
-            let navigationController = segue.destinationViewController as UINavigationController
-            let contactDetailsViewController = navigationController.viewControllers[0] as ContactDetailsViewController
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let contactDetailsViewController = navigationController.viewControllers[0] as! ContactDetailsViewController
             contactDetailsViewController.delegate = self
             
             // for "Edit", pass the Contact to the controller
@@ -344,9 +344,9 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
                 
                 // if instance is a cell (which means it was clicked) determine AGContact from cell
                 if sender is UITableViewCell {
-                    contact = activeContactFromCell(sender as UITableViewCell)
+                    contact = activeContactFromCell(sender as! UITableViewCell)
                 } else {
-                    contact = sender as Contact
+                    contact = sender as! Contact
                 }
                 
                 // assign it
@@ -361,7 +361,7 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
         var contact:Contact!
         
         if self.searchController.active {
-            let tableViewController = self.searchController.searchResultsController as UITableViewController
+            let tableViewController = self.searchController.searchResultsController as! UITableViewController
             let indexPath = tableViewController.tableView.indexPathForCell(cell)
             
             contact = filteredContacts[indexPath!.row]

@@ -97,7 +97,7 @@ class ContactDetailsViewController: UITableViewController {
     }
     
     func updateDateTextField(sender: AnyObject!) {
-        let picker = self.birthdateTxtField.inputView as UIDatePicker
+        let picker = self.birthdateTxtField.inputView as! UIDatePicker
         
         self.birthdateTxtField.text = stringFromDate(picker.date)
     }

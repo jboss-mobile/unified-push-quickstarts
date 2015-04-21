@@ -31,11 +31,11 @@ public class Contact {
     
     init(fromDictionary: [String: AnyObject]) {
         recId = fromDictionary["id"] as? NSNumber
-        firstname = fromDictionary["firstName"] as? NSString
-        lastname = fromDictionary["lastName"] as? NSString
-        phoneNumber = fromDictionary["phoneNumber"] as? NSString
-        email = fromDictionary["email"] as? NSString
-        birthdate = fromDictionary["birthDate"] as? NSString
+        firstname = fromDictionary["firstName"] as? String
+        lastname = fromDictionary["lastName"] as? String
+        phoneNumber = fromDictionary["phoneNumber"] as? String
+        email = fromDictionary["email"] as? String
+        birthdate = fromDictionary["birthDate"] as? String
     }
     
     func asDictionary() -> [String: AnyObject] {

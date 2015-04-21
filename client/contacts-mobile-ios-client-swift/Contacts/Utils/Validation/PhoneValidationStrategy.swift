@@ -21,7 +21,7 @@ class PhoneValidationStrategy: NSObject, ValidationStrategy {
     
     func validate(input: String) -> Bool {
         let detector = NSDataDetector(types: NSTextCheckingType.PhoneNumber.rawValue, error: nil)
-        let matches = detector!.matchesInString(input, options:.ReportCompletion, range:NSMakeRange(0, input.utf16Count));
+        let matches = detector!.matchesInString(input, options:.ReportCompletion, range:NSMakeRange(0, count(input.utf16)));
 
         return matches.count > 0
     }

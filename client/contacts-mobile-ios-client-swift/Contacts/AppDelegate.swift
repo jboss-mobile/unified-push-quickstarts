@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             
     var window: UIWindow?
 
-    func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // register with APNS
         let settings = UIUserNotificationSettings(forTypes: .Alert | .Badge | .Sound, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
@@ -32,16 +32,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     // Callback called after successfully registration with APNS
-    func application(application: UIApplication!, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData!) {
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         // convenient store the "device token" for later retrieval
         NSUserDefaults.standardUserDefaults().setObject(deviceToken, forKey: "deviceToken")
     }
     
-    func application(application: UIApplication!, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]!, fetchCompletionHandler completionHandler: ((UIBackgroundFetchResult) -> Void)!) {
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: ((UIBackgroundFetchResult) -> Void)) {
         
         // ensure the user has logged in
         let rootVC = self.window?.rootViewController
-        let topViewController = (rootVC as UINavigationController).topViewController
+        let topViewController = (rootVC as! UINavigationController).topViewController
         
         // are we logged in ?
         if let contactsController = topViewController as? ContactsViewController {
@@ -50,12 +50,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // has already been fetched so we just ask the controller to
             // display the details screen for this Contact.
             if application.applicationState == .Inactive {
-                contactsController.displayDetailsForContactWithId(userInfo["id"] as NSString)
+                contactsController.displayDetailsForContactWithId(userInfo["id"] as! NSString)
                 completionHandler(.NoData)
                 
             } else {  // fetch it
                 // attempt to fetch new contact
-                contactsController.performFetchWithUserInfo(userInfo, completionHandler)
+                contactsController.performFetchWithUserInfo(userInfo, completionHandler: completionHandler)
             }
         }
     }
