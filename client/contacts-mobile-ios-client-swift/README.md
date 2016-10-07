@@ -1,5 +1,8 @@
 quickstart-push-ios: CRUD Mobile Application showing the AeroGear Push feature on iOS  (Swift version)
 ======================================================================================================
+
+**This application is deprecated. It was written using Swift 1.2.**
+
 Author: Christos Vasilakis (cvasilak)  
 Level: Beginner  
 Technologies: Swift, iOS  
