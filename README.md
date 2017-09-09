@@ -1,5 +1,7 @@
 [![Build Status](https://api.travis-ci.org/jboss-mobile/unified-push-quickstarts.png?branch=master)](https://travis-ci.org/jboss-mobile/unified-push-quickstarts)
 
+**Deprecated:** this sample repository is deprecated. Checkout the AeroGear community cookbooks instead!
+
 unified-push-quickstarts
 ========================
 
